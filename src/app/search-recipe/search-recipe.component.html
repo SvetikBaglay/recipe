@@ -1,9 +1,8 @@
 <div class="container">
-  <form>
-  <!-- <form class="container my-3" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()"> -->
+  <form class="container my-3" #form="ngForm" (ngSubmit)="onSubmit(form)">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Find recipes" name="searchText" aria-label="Find pecipes"/>
-      <input type="button"  class="btn" value="Submit" />
+      <input type="text" class="form-control" placeholder="Find recipes" name="searchRecipe" aria-label="Find recipes" [(ngModel)]="searchText" />
+      <input type="submit" class="btn" [disabled]="form.invalid" value="Submit" />
     </div>
   </form>
 </div>

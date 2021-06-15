@@ -7,6 +7,8 @@ import { SearchRecipeComponent } from './search-recipe/search-recipe.component';
 import { RecipeImageComponent } from './recipe-image/recipe-image.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     AppRoutingModule,
     AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: SearchRecipeComponent },
       { path: 'recipes', component: RecipesComponent },
