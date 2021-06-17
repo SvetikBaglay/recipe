@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm} from '@angular/forms';
-import { RecipeService } from '../recipe.service';
+import { IRecipe, IRecipes, RecipeService } from '../recipe.service';
 
 
 @Component({
@@ -10,14 +10,25 @@ import { RecipeService } from '../recipe.service';
 })
 export class SearchRecipeComponent implements OnInit {
   searchText: string = '';
+  recipes: IRecipes[] = [];
 
   constructor(
     private recipeServise: RecipeService,
   ) { }
 
 
-  onSubmit(form: NgForm) {
+  handleSearch(page: number): void {
+    this.recipeServise.search(this.searchText).subscribe({
+      next: (resp: IRecipe) => {
+        this.recipes = resp.hits;
+      },
+      error: console.log
+    });
+  }
 
+
+
+  onSubmit(form: NgForm) {
     console.log(form.value);
   }
 
