@@ -17,10 +17,9 @@ export class SearchRecipeComponent implements OnInit {
   ) { }
 
 
-  handleSearch(page: number): void {
-    this.recipeServise.search(this.searchText).subscribe({
+  handleSearch(page: number): void {({
       next: (resp: IRecipe) => {
-        this.recipes = resp.hits;
+        // this.recipes = resp.hits;
       },
       error: console.log
     });
@@ -29,7 +28,11 @@ export class SearchRecipeComponent implements OnInit {
 
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
+    console.log('onSubmit: ', form),
+    this.recipeServise.search(this.searchText).subscribe(
+      result =>   this.recipes = result.hits,
+      error => console.log('error:', error)
+    )
   }
 
   ngOnInit(): void {
