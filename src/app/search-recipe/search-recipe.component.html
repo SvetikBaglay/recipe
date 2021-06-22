@@ -1,9 +1,11 @@
 <div class="container">
-  <form class="container my-3" #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <form class="container my-3" #form="ngForm" novalidate (ngSubmit)="onSubmit(form)" novalidate>
     <div class="input-group">
       <input type="text" class="form-control" placeholder="Find recipes" name="searchRecipe" aria-label="Find recipes" [(ngModel)]="searchText" />
       <input type="submit" class="btn" [disabled]="form.invalid" value="Submit" />
     </div>
   </form>
-  <div *ngFor="let recipe of recipes" class="m-3 col-md-3 border bg-light p-3"></div>
+  <div *ngFor="let recipe of recipes" class="m-3  border bg-light p-3">
+    <app-recipe-image [recipeImage]="recipe.image" [recipeLabel]="recipe.label"></app-recipe-image>
+  </div>
 </div>
