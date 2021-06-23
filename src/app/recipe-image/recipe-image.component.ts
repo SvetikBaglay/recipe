@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipeService } from '../recipe.service';
+import { IRecipes, RecipeService } from '../recipe.service';
 import { Input } from '@angular/core';
 
 @Component({
@@ -8,19 +8,26 @@ import { Input } from '@angular/core';
   styleUrls: ['./recipe-image.component.css']
 })
 export class RecipeImageComponent implements OnInit {
+  sourse: string;
+  sizeImg: IRecipes;
 
   @Input() recipeImage: string;
   @Input() recipeLabel: string;
-  searchText: string = '';
 
   constructor(
     private recipeServise: RecipeService
   ) { }
 
+  getPicture(label: string): void {
+    this.recipeServise.search(label).subscribe(
+      result => console.log('result: ', result),
+      error => console.log('error: ', error),
+      )
+    }
+
 
   ngOnInit(): void {
-    this.recipeImage
-    console.log('recepeImage: ', this.recipeImage)
+    this.getPicture(this.recipeImage)
   }
 
 }
